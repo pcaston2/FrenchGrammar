@@ -1,7 +1,6 @@
 using FrenchGrammarEngine.Verbs;
 using System;
 using FrenchGrammarEngine;
-using FrenchGrammarEngine.Verbs.RegularVerbs;
 using FrenchGrammarEngineTests;
 using Xunit;
 

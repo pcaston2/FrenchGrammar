@@ -20,6 +20,7 @@ namespace FrenchGrammarEngine.Verbs
                     switch (conjugation.Tense)
                     {
                         case Tense.Present:
+                        case Tense.Imperfect:
                             return Root + Termination(conjugation.Tense, conjugation.Pronoun);
 
                     }

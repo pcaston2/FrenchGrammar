@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FrenchGrammarEngine.Verbs.RegularVerbs;
+using FrenchGrammarEngine.Verbs;
+using FrenchGrammarEngine.Verbs.RegularVerbs.ErVerbs;
+using FrenchGrammarEngine.Verbs.RegularVerbs.IrVerbs;
 
 namespace FrenchGrammarEngine.Verbs
 {
@@ -19,6 +21,9 @@ namespace FrenchGrammarEngine.Verbs
 
             var verbTypes = new List<Type>();
             verbTypes.Add(typeof(Porter));
+            verbTypes.Add(typeof(Finir));
+            verbTypes.Add(typeof(Aimer));
+            verbTypes.Add(typeof(Batir));
 
             foreach (var verb in verbTypes)
             {

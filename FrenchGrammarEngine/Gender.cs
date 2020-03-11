@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FrenchGrammarEngine.Verbs
+namespace FrenchGrammarEngine
 {
     public enum Gender
     {

@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Text;
 using FrenchGrammarEngine;
 using FrenchGrammarEngine.Verbs;
-using FrenchGrammarEngine.Verbs.RegularVerbs;
 
 namespace FrenchGrammarEngineTests
 {
@@ -17,12 +16,19 @@ namespace FrenchGrammarEngineTests
     {
         private Dictionary<Columns, ConjugationOptions> columnMap = new Dictionary<Columns, ConjugationOptions>()
         {
-            {Columns.IndPresFps, new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.FirstPersonSingular)},
-            {Columns.IndPresSps, new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.SecondPersonSingular)},
-            {Columns.IndPresTps, new ConjugationOptions(Mood.Indicative,Tense.Present, Pronoun.ThirdPersonSingular)},
-            {Columns.IndPresFpp,new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.FirstPersonPlural)},
-            {Columns.IndPresSpp, new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.SecondPersonPlural)},
-            {Columns.IndPresTpp, new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.ThirdPersonPlural)}
+            {Columns.IndPresFps, new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.FirstPersonSingular) },
+            {Columns.IndPresSps, new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.SecondPersonSingular) },
+            {Columns.IndPresTps, new ConjugationOptions(Mood.Indicative,Tense.Present, Pronoun.ThirdPersonSingular) },
+            {Columns.IndPresFpp,new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.FirstPersonPlural) },
+            {Columns.IndPresSpp, new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.SecondPersonPlural) },
+            {Columns.IndPresTpp, new ConjugationOptions(Mood.Indicative, Tense.Present, Pronoun.ThirdPersonPlural) },
+            {Columns.IndImpFps,new ConjugationOptions(Mood.Indicative, Tense.Imperfect, Pronoun.FirstPersonSingular) },
+            {Columns.IndImpSps,new ConjugationOptions(Mood.Indicative, Tense.Imperfect, Pronoun.FirstPersonSingular) },
+            {Columns.IndImpTps, new ConjugationOptions(Mood.Indicative, Tense.Imperfect, Pronoun.ThirdPersonSingular) },
+            {Columns.IndImpFpp,new ConjugationOptions(Mood.Indicative, Tense.Imperfect, Pronoun.FirstPersonPlural) },
+            {Columns.IndImpSpp,new ConjugationOptions(Mood.Indicative, Tense.Imperfect, Pronoun.SecondPersonPlural) },
+            {Columns.IndImpTpp, new ConjugationOptions(Mood.Indicative, Tense.Imperfect, Pronoun.ThirdPersonPlural) }
+
         };
         enum Columns
         {
@@ -37,6 +43,18 @@ namespace FrenchGrammarEngineTests
             IndPresFpp,
             IndPresSpp,
             IndPresTpp,
+            IndImpFps,
+            IndImpSps,
+            IndImpTps,
+            IndImpFpp,
+            IndImpSpp,
+            IndImpTpp,
+            IndPasFps,
+            IndPasSps,
+            IndPasTps,
+            IndPasFpp,
+            IndPasSpp,
+            IndPasTpp
         }
 
         public IEnumerator<object[]> GetEnumerator()

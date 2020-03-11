@@ -15,6 +15,14 @@
                     "ez",
                     "ent"
                 );
+                td.AddTense(Tense.Imperfect,
+                    "ais",
+                    "ais",
+                    "ait",
+                    "ions",
+                    "iez",
+                    "aient"
+                    );
                 return td;
             }
         }

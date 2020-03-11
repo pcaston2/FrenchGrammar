@@ -6,6 +6,9 @@ namespace FrenchGrammarEngine.Verbs
 {
     public enum Tense
     {
-        Present
+        Present,
+        Imperfect,
+        Past,
+        Future,
     }
 }
