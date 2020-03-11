@@ -6,7 +6,7 @@ namespace FrenchGrammarEngine.Verbs.RegularVerbs
 {
     public class Porter : ErVerb
     {
-        public override string Name => "porter";
+        public override string Infinitive => "porter";
 
         public override string Root => "port";
     }

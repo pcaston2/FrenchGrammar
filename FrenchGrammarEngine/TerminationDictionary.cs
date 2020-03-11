@@ -10,8 +10,8 @@ namespace FrenchGrammarEngine
         public void AddTense(Tense tense, params string[] terminations)
         {
             var tenseDictionary = new Dictionary<Pronoun, string>();
-            int maxIndex = (int)Pronoun.Elles;
-            for (var i = 0; i < maxIndex;i++)
+            int maxIndex = (int)Pronoun.ThirdPersonPlural;
+            for (var i = 0; i <= maxIndex;i++)
             {
                 string currentTermination = terminations[i];
                 if (!String.IsNullOrEmpty(currentTermination))

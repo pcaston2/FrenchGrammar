@@ -17,4 +17,10 @@
     <ProjectReference Include="..\FrenchGrammarEngine\FrenchGrammarEngine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="conjugationdataset.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

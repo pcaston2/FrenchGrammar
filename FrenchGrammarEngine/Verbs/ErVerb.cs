@@ -11,10 +11,8 @@
                     "e",
                     "es",
                     "e",
-                    "e",
                     "ons",
                     "ez",
-                    "ent",
                     "ent"
                 );
                 return td;

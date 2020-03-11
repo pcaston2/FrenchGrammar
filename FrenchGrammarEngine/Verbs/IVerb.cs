@@ -4,7 +4,7 @@ namespace FrenchGrammarEngine.Verbs
 {
     public interface IVerb
     {
-        string Name { get; }
+        string Infinitive { get; }
 
         TerminationDictionary Terminations { get; }
 
