@@ -6,6 +6,9 @@ namespace FrenchGrammarEngine.Verbs
     {
         public abstract string Root { get; }
 
+
+        public abstract TerminationDictionary Terminations { get; }
+
         public string Termination(Tense tense, Pronoun pronoun)
         {
             return Terminations.GetTense(tense, pronoun);

@@ -6,8 +6,6 @@ namespace FrenchGrammarEngine.Verbs
     {
         string Infinitive { get; }
 
-        TerminationDictionary Terminations { get; }
-
         string Conjugate(ConjugationOptions conjugation);
     }
 }

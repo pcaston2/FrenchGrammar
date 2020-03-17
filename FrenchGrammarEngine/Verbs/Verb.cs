@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FrenchGrammarEngine.Verbs;
+using FrenchGrammarEngine.Verbs.IrregularVerbs;
 using FrenchGrammarEngine.Verbs.RegularVerbs.ErVerbs;
 using FrenchGrammarEngine.Verbs.RegularVerbs.IrVerbs;
 
@@ -10,8 +11,16 @@ namespace FrenchGrammarEngine.Verbs
 {
     public abstract class Verb : IVerb
     {
+
+        public abstract string Root { get; }
         public abstract string Infinitive { get; }
+
         public abstract TerminationDictionary Terminations { get; }
+
+        public string Termination(Tense tense, Pronoun pronoun)
+        {
+            return Terminations.GetTense(tense, pronoun);
+        }
 
         public abstract string Conjugate(ConjugationOptions conjugation);
 
@@ -24,6 +33,7 @@ namespace FrenchGrammarEngine.Verbs
             verbTypes.Add(typeof(Finir));
             verbTypes.Add(typeof(Aimer));
             verbTypes.Add(typeof(Batir));
+            verbTypes.Add(typeof(Etre));
 
             foreach (var verb in verbTypes)
             {
