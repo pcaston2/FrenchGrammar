@@ -4,13 +4,12 @@ using System.Text;
 
 namespace FrenchGrammarEngine.Verbs.IrregularVerbs
 {
-    public class Etre : Verb
+    public class Etre : ErVerb
     {
         public override string Infinitive => "être";
 
-        public override string Root => "êt";
+        public override string Root => "ét";
 
-        public override TerminationDictionary Terminations => throw new NotImplementedException();
 
         public override string Conjugate(ConjugationOptions conjugation)
         {
@@ -28,6 +27,8 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
             {
                 case Tense.Present:
                     return ConjugateIndicativePresent(pronoun);
+                case Tense.Imperfect:
+                    return base.Conjugate(new ConjugationOptions(Mood.Indicative, tense, pronoun));
             }
             return string.Empty;
         }

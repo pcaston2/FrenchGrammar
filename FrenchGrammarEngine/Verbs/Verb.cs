@@ -22,26 +22,43 @@ namespace FrenchGrammarEngine.Verbs
             return Terminations.GetTense(tense, pronoun);
         }
 
-        public abstract string Conjugate(ConjugationOptions conjugation);
-
         public static Dictionary<Type, string> Verbs()
         {
             var verbs = new Dictionary<Type, string>();
 
-            var verbTypes = new List<Type>();
-            verbTypes.Add(typeof(Porter));
-            verbTypes.Add(typeof(Finir));
-            verbTypes.Add(typeof(Aimer));
-            verbTypes.Add(typeof(Batir));
-            verbTypes.Add(typeof(Etre));
+            var verbTypes = new List<Type>
+            {
+                typeof(Porter),
+                typeof(Finir),
+                typeof(Aimer),
+                typeof(Batir),
+                typeof(Etre),
+                typeof(Avoir)
+            };
 
             foreach (var verb in verbTypes)
             {
-                var verbInstance = (Verb)Activator.CreateInstance(verb);
+                var verbInstance = (Verb) Activator.CreateInstance(verb);
                 verbs.Add(verb, verbInstance.Infinitive);
             }
 
             return verbs;
+        }
+
+        public virtual string Conjugate(ConjugationOptions conjugation)
+        {
+            switch (conjugation.Mood)
+            {
+                case Mood.Indicative:
+                    switch (conjugation.Tense)
+                    {
+                        case Tense.Present:
+                        case Tense.Imperfect:
+                            return Root + Termination(conjugation.Tense, conjugation.Pronoun);
+                    }
+                    break;
+            }
+            throw new NotImplementedException();
         }
     }
 }

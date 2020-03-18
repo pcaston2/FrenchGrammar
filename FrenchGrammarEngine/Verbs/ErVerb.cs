@@ -1,6 +1,6 @@
 ﻿namespace FrenchGrammarEngine.Verbs
 {
-    public abstract class ErVerb : RegularVerb
+    public abstract class ErVerb : Verb
     {
         public override TerminationDictionary Terminations
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FrenchGrammarEngine.Verbs
 {
-    public abstract class IrVerb : RegularVerb
+    public abstract class IrVerb : Verb
     {
         public override TerminationDictionary Terminations
         {
@@ -29,5 +29,6 @@ namespace FrenchGrammarEngine.Verbs
                 return td;
             }
         }
+
     }
 }
