@@ -47,6 +47,7 @@ namespace FrenchGrammarEngine.Verbs
 
         public virtual string Conjugate(ConjugationOptions conjugation)
         {
+            return Root + Termination(conjugation.Tense, conjugation.Pronoun);
             switch (conjugation.Mood)
             {
                 case Mood.Indicative:
@@ -58,7 +59,12 @@ namespace FrenchGrammarEngine.Verbs
                     }
                     break;
             }
+        }
+
+        protected virtual string ConjugateIndicativePresent(Pronoun pronoun)
+        {
             throw new NotImplementedException();
         }
+
     }
 }
