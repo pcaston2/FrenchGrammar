@@ -13,6 +13,10 @@ namespace FrenchGrammarEngineTests {
         [ClassData(typeof(VerbTestData))]
         public void Should_Conjugate_Properly(Type v, ConjugationOptions co, string expectedConjugation)
         {
+            if (v.IsAssignableFrom(typeof(VerbNotImplemented)))
+            {
+                throw new NotImplementedException($"Verb {expectedConjugation} is not implemented");
+            }
             var verb = (IVerb)Activator.CreateInstance(v);
             var result = verb.Conjugate(co);
             Assert.Equal(expectedConjugation, result);

@@ -1,23 +1,20 @@
 ﻿namespace FrenchGrammarEngine.Verbs
 {
-    public abstract class IrregularVerb : ErVerb
+    public abstract class IrregularVerb : Verb
     {
-
-        public override string Conjugate(ConjugationOptions conjugation)
+        public override ConguationDictionary Terminations
         {
-            switch (conjugation.Mood)
+            get
             {
-                case Mood.Indicative:
-                    switch (conjugation.Tense)
-                    {
-                        case Tense.Present:
-                            return ConjugateIndicativePresent(conjugation.Pronoun);
-                    }
-
-                    break;
+                var td = new ConguationDictionary();
+                td.AddTense(Mood.Indicative, Tense.Imperfect,
+                    GetIndicativeImperfectTense());
+                td.AddTense(Mood.Indicative, Tense.Present, GetIndicativePresent());
+                return td;
             }
-
-            return base.Conjugate(conjugation);
         }
+
+        public abstract PronounDictionary GetIndicativePresent();
+
     }
 }

@@ -8,19 +8,17 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
     {
         public override string Root => "av";
         public override string Infinitive => "avoir";
-
-        protected override string ConjugateIndicativePresent(Pronoun pronoun)
+        
+        public override PronounDictionary GetIndicativePresent()
         {
-            return pronoun switch
-            {
-                Pronoun.FirstPersonSingular => "ai",
-                Pronoun.SecondPersonSingular => "as",
-                Pronoun.ThirdPersonSingular => "a",
-                Pronoun.FirstPersonPlural => "avons",
-                Pronoun.SecondPersonPlural => "avez",
-                Pronoun.ThirdPersonPlural => "ont",
-                _ => throw new NotImplementedException(),
-            };
+            return new PronounDictionary(
+                "ai",
+                "as",
+                "a",
+                "avons",
+                "avez",
+                "ont"
+                );
         }
     }
 }

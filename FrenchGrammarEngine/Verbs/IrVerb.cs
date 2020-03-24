@@ -6,26 +6,39 @@ namespace FrenchGrammarEngine.Verbs
 {
     public abstract class IrVerb : Verb
     {
-        public override TerminationDictionary Terminations
+        public override ConguationDictionary Terminations
         {
             get
             {
-                TerminationDictionary td = new TerminationDictionary();
-                td.AddTense(Tense.Present,
-                    "is",
-                    "is",
-                    "it",
-                    "issons",
-                    "issez",
-                    "issent"
-                );
-                td.AddTense(Tense.Imperfect,
-                    "issais",
-                    "issais",
-                    "issait",
-                    "issions",
-                    "issiez",
-                    "issaient");
+                ConguationDictionary td = new ConguationDictionary();
+                td.AddTense(Mood.Indicative, Tense.Present,
+                    new PronounDictionary(
+                    "-is",
+                    "-is",
+                    "-it",
+                    "-issons",
+                    "-issez",
+                    "-issent"));
+
+                td.AddTense(Mood.Indicative, Tense.Imperfect,
+                    new PronounDictionary(
+                        "-iss-",
+                        "-iss-",
+                        "-iss-",
+                        "-iss-",
+                        "-iss-",
+                        "-iss-"
+                        ).Augment(GetIndicativeImperfectTense()));
+
+                td.AddTense(Mood.Subjunctive, Tense.Present,
+                    new PronounDictionary(
+                        "-isse",
+                        "-isses",
+                        "-isse",
+                        "-issions",
+                        "-issiez",
+                        "-issent"));
+
                 return td;
             }
         }

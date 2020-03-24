@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FrenchGrammarEngine.Verbs.RegularVerbs.IrVerbs
 {
-    public class Batir : IrVerb
+    public class Bâtir : IrVerb
     {
 
         public override string Infinitive => "bâtir";

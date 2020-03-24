@@ -15,11 +15,36 @@ namespace FrenchGrammarEngine.Verbs
         public abstract string Root { get; }
         public abstract string Infinitive { get; }
 
-        public abstract TerminationDictionary Terminations { get; }
+        public abstract ConguationDictionary Terminations { get; }
 
-        public string Termination(Tense tense, Pronoun pronoun)
+        public string Termination(Mood mood, Tense tense, Pronoun pronoun)
         {
-            return Terminations.GetTense(tense, pronoun);
+            return Terminations.GetTense(mood, tense, pronoun);
+        }
+
+        public static PronounDictionary GetIndicativeImperfectTense()
+        {
+            return new PronounDictionary(
+                "-ais",
+                "-ais",
+                "-ait",
+                "-ions",
+                "-iez",
+                "-aient"
+                );
+        }
+
+        public static PronounDictionary GetIndicativePresentTense()
+        {
+            return new PronounDictionary(
+
+                "-e",
+                "-es",
+                "-e",
+                "-ions",
+                "-iez",
+                "-ent"
+                );
         }
 
         public static Dictionary<Type, string> Verbs()
@@ -31,9 +56,11 @@ namespace FrenchGrammarEngine.Verbs
                 typeof(Porter),
                 typeof(Finir),
                 typeof(Aimer),
-                typeof(Batir),
-                typeof(Etre),
-                typeof(Avoir)
+                typeof(Bâtir),
+                typeof(Être),
+                typeof(Avoir),
+                typeof(Attendre),
+                typeof(Défendre)
             };
 
             foreach (var verb in verbTypes)
@@ -47,17 +74,14 @@ namespace FrenchGrammarEngine.Verbs
 
         public virtual string Conjugate(ConjugationOptions conjugation)
         {
-            return Root + Termination(conjugation.Tense, conjugation.Pronoun);
-            switch (conjugation.Mood)
+            var termination = Termination(conjugation.Mood, conjugation.Tense, conjugation.Pronoun);
+            if (termination.isPostfix())
             {
-                case Mood.Indicative:
-                    switch (conjugation.Tense)
-                    {
-                        case Tense.Present:
-                        case Tense.Imperfect:
-                            return Root + Termination(conjugation.Tense, conjugation.Pronoun);
-                    }
-                    break;
+                return Root.Merge(termination);
+            }
+            else
+            {
+                return termination;
             }
         }
 
