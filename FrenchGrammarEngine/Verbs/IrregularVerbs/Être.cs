@@ -11,7 +11,7 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
         public override string Root => "ét";
 
 
-        public override PronounDictionary GetIndicativePresent()
+        public override PronounDictionary GetIndicativePresentTense()
         {
             return new PronounDictionary(
                 "suis",
@@ -19,7 +19,20 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
                 "est",
                 "sommes",
                 "êtes",
-                "sont");
+                "sont"
+                );
+        }
+
+        public override PronounDictionary GetSubjunctivePresentTense()
+        {
+            return new PronounDictionary(
+                "sois",
+                "sois",
+                "soit",
+                "soyons",
+                "soyez",
+                "soient"
+                );
         }
     }
 }

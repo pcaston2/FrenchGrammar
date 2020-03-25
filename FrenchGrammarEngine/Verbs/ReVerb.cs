@@ -11,7 +11,7 @@ namespace FrenchGrammarEngine.Verbs
             get
             {
                 ConguationDictionary td = new ConguationDictionary();
-                td.AddTense(Mood.Indicative, Tense.Present,
+                td.SetTense(Mood.Indicative, Tense.Present,
                     new PronounDictionary(
                         "-s",
                         "-s",
@@ -21,9 +21,11 @@ namespace FrenchGrammarEngine.Verbs
                         "-ent"
                         ));
 
-                td.AddTense(Mood.Indicative, Tense.Imperfect,
+                td.SetTense(Mood.Indicative, Tense.Imperfect,
                     GetIndicativeImperfectTense());
-
+                
+                td.SetTense(Mood.Subjunctive, Tense.Present,
+                    GetSubjunctivePresentTense().Augment(GetIndicativePresentTense()));
                 return td;
             }
         }

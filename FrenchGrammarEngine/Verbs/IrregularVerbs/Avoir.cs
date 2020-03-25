@@ -9,7 +9,7 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
         public override string Root => "av";
         public override string Infinitive => "avoir";
         
-        public override PronounDictionary GetIndicativePresent()
+        public override PronounDictionary GetIndicativePresentTense()
         {
             return new PronounDictionary(
                 "ai",
@@ -18,6 +18,18 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
                 "avons",
                 "avez",
                 "ont"
+                );
+        }
+
+        public override PronounDictionary GetSubjunctivePresentTense()
+        {
+            return new PronounDictionary(
+                "aie",
+                "aies",
+                "ait",
+                "ayons",
+                "ayez",
+                "aient"
                 );
         }
     }

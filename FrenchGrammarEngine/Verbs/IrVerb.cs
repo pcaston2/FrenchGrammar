@@ -6,12 +6,24 @@ namespace FrenchGrammarEngine.Verbs
 {
     public abstract class IrVerb : Verb
     {
+        public static PronounDictionary GetStuffix()
+        {
+            return new PronounDictionary(
+            "-iss-",
+            "-iss-",
+            "-iss-",
+            "-iss-",
+            "-iss-",
+            "-iss-"
+                 );
+        }
+
         public override ConguationDictionary Terminations
         {
             get
             {
                 ConguationDictionary td = new ConguationDictionary();
-                td.AddTense(Mood.Indicative, Tense.Present,
+                td.SetTense(Mood.Indicative, Tense.Present,
                     new PronounDictionary(
                     "-is",
                     "-is",
@@ -20,24 +32,11 @@ namespace FrenchGrammarEngine.Verbs
                     "-issez",
                     "-issent"));
 
-                td.AddTense(Mood.Indicative, Tense.Imperfect,
-                    new PronounDictionary(
-                        "-iss-",
-                        "-iss-",
-                        "-iss-",
-                        "-iss-",
-                        "-iss-",
-                        "-iss-"
-                        ).Augment(GetIndicativeImperfectTense()));
+                td.SetTense(Mood.Indicative, Tense.Imperfect,
+                    GetStuffix().Augment(GetIndicativeImperfectTense()));
 
-                td.AddTense(Mood.Subjunctive, Tense.Present,
-                    new PronounDictionary(
-                        "-isse",
-                        "-isses",
-                        "-isse",
-                        "-issions",
-                        "-issiez",
-                        "-issent"));
+                td.SetTense(Mood.Subjunctive, Tense.Present,
+                    GetStuffix().Augment(GetSubjunctivePresentTense().Augment(GetIndicativePresentTense())));
 
                 return td;
             }

@@ -7,9 +7,17 @@ namespace FrenchGrammarEngine
 {
     public class ConguationDictionary : Dictionary<KeyValuePair<Mood, Tense>, PronounDictionary>
     {
-        public void AddTense(Mood mood, Tense tense, PronounDictionary tenseDictionary)
+        public void SetTense(Mood mood, Tense tense, PronounDictionary pronounDictionary)
         {
-            this.Add(new KeyValuePair<Mood, Tense>(mood, tense), tenseDictionary);
+            var key = new KeyValuePair<Mood,Tense>(mood, tense);
+            if (this.ContainsKey(key))
+            {
+                this[key] = pronounDictionary;
+            }
+            else
+            {
+                this.Add(key, pronounDictionary);
+            }
         }
 
         public string GetTense(Mood mood, Tense tense, Pronoun pronoun)

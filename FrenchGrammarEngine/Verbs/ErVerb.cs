@@ -9,25 +9,12 @@
             get
             {
                 ConguationDictionary td = new ConguationDictionary();
-                td.AddTense(Mood.Indicative, Tense.Present,
-                    new PronounDictionary(
-                        "-e",
-                        "-es",
-                        "-e",
-                        "-ons",
-                        "-ez",
-                        "-ent"));
-                td.AddTense(Mood.Indicative, Tense.Imperfect,
+                td.SetTense(Mood.Indicative, Tense.Present,
+                    GetIndicativePresentTense());
+                td.SetTense(Mood.Indicative, Tense.Imperfect,
                     GetIndicativeImperfectTense());
-                td.AddTense(Mood.Subjunctive, Tense.Present,
-                    new PronounDictionary(
-                        null,
-                        null,
-                        null,
-                        "-i-",
-                        "-i-",
-                        null
-                    ).Augment(GetIndicativePresentTense()));
+                td.SetTense(Mood.Subjunctive, Tense.Present,
+                    GetSubjunctivePresentTense().Augment(GetIndicativePresentTense()));
 
                 return td;
             }

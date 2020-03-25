@@ -42,6 +42,11 @@ namespace FrenchGrammarEngine
                 throw new Exception($"Expected postfix but got {postfix}");
             }
 
+            if (String.IsNullOrEmpty(prefix))
+            {
+                return postfix;
+            }
+
             return prefix.StripEnd() + postfix.StripStart();
         }
 

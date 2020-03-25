@@ -15,14 +15,27 @@ namespace FrenchGrammarEngine.Verbs
         public abstract string Root { get; }
         public abstract string Infinitive { get; }
 
-        public abstract ConguationDictionary Terminations { get; }
+        public virtual ConguationDictionary Terminations
+        {
+            get
+            {
+                var td = new ConguationDictionary();
+                td.SetTense(Mood.Indicative, Tense.Imperfect,
+                    GetIndicativeImperfectTense());
+                td.SetTense(Mood.Indicative, Tense.Present,
+                    GetIndicativePresentTense());
+                td.SetTense(Mood.Subjunctive, Tense.Present,
+                    GetSubjunctivePresentTense());
+                return td;
+            }
+        }
 
         public string Termination(Mood mood, Tense tense, Pronoun pronoun)
         {
             return Terminations.GetTense(mood, tense, pronoun);
         }
 
-        public static PronounDictionary GetIndicativeImperfectTense()
+        public virtual PronounDictionary GetIndicativeImperfectTense()
         {
             return new PronounDictionary(
                 "-ais",
@@ -34,17 +47,28 @@ namespace FrenchGrammarEngine.Verbs
                 );
         }
 
-        public static PronounDictionary GetIndicativePresentTense()
+        public virtual PronounDictionary GetIndicativePresentTense()
         {
             return new PronounDictionary(
 
                 "-e",
                 "-es",
                 "-e",
-                "-ions",
-                "-iez",
+                "-ons",
+                "-ez",
                 "-ent"
                 );
+        }
+
+        public virtual PronounDictionary GetSubjunctivePresentTense()
+        {
+            return new PronounDictionary(
+                null,
+                null,
+                null,
+                "-i-",
+                "-i-",
+                null);
         }
 
         public static Dictionary<Type, string> Verbs()
@@ -84,6 +108,7 @@ namespace FrenchGrammarEngine.Verbs
                 return termination;
             }
         }
+
 
         protected virtual string ConjugateIndicativePresent(Pronoun pronoun)
         {
