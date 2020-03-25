@@ -89,11 +89,16 @@ namespace FrenchGrammarEngine.Verbs
 
             foreach (var verb in verbTypes)
             {
-                var verbInstance = (Verb) Activator.CreateInstance(verb);
+                var verbInstance = GenerateVerb(verb);
                 verbs.Add(verb, verbInstance.Infinitive);
             }
 
             return verbs;
+        }
+
+        public static Verb GenerateVerb(Type type)
+        {
+            return (Verb)Activator.CreateInstance(type);
         }
 
         public virtual string Conjugate(ConjugationOptions conjugation)
