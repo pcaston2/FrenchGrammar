@@ -32,7 +32,7 @@ namespace FrenchGrammar.Controllers
 
                 }
             } while (model == null);
-            return View(VerbViewModel);
+            return View(model);
         }
     }
 }
