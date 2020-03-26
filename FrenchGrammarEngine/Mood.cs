@@ -7,8 +7,8 @@ namespace FrenchGrammarEngine
     public enum Mood
     {
         Indicative,
-        Imperative,
-        Conditional,
+        //Imperative,
+        //Conditional,
         Subjunctive
     }
 }

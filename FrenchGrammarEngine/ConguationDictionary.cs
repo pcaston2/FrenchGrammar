@@ -32,12 +32,12 @@ namespace FrenchGrammarEngine
                 }
                 else
                 {
-                    throw new Exception($"Pronoun information not found for {Enum.GetName(typeof(Pronoun),pronoun)}");
+                    throw new NotImplementedException($"Pronoun information not found for {Enum.GetName(typeof(Pronoun),pronoun)}");
                 }
             }
             else
             {
-                throw new Exception($"No tense information found for {Enum.GetName(typeof(Mood), mood)} {Enum.GetName(typeof(Tense),tense)}");
+                throw new NotImplementedException($"No tense information found for {Enum.GetName(typeof(Mood), mood)} {Enum.GetName(typeof(Tense),tense)}");
             }
         }
     }

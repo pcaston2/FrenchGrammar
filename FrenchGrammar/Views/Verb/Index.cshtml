@@ -1,0 +1,44 @@
+﻿@model FrenchGrammar.Models.VerbViewModel
+
+@{
+    ViewData["Title"] = "Verb Test";
+}
+<div>
+    <dl>
+        <dt>Verb</dt>
+        <dd>@Model.verb</dd>
+        <dt>Mood</dt>
+        <dd>@Model.mood</dd>
+        <dt>Tense</dt>
+        <dd>@Model.tense</dd>
+        <dt>Pronoun</dt>
+        <dd>@Model.pronoun</dd>
+    </dl>
+    <form role="form" data-toggle="validator">
+        <div class="form-group">
+            <label for="inputPassword" class="control-label">Conjugate:</label>
+            <div class="form-inline row">
+                <div class="form-group col-sm-6">
+                    <input type="text" class="form-control" id="inputPassword" data-match="#inputPasswordConfirm" data-match-error="Not quite...">
+                    <br />
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <input type="hidden" class="form-control" id="inputPasswordConfirm" value="@Model.conjugation">
+                </div>
+            </div>
+        </div>
+        <button type="button" data-toggle="collapse" data-target="#answer">Answer</button>
+
+        <div class="collapse" id="answer">
+            <h3>@Model.conjugation</h3>
+        </div>
+
+        <button action="submit">Next</button>
+    </form>
+
+    
+</div>
+<div>
+
+</div>

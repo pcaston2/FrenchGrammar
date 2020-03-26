@@ -24,7 +24,15 @@ namespace FrenchGrammar.Controllers
                     model = new VerbViewModel();
                     model.mood = currOptions.Mood.ToString();
                     model.tense = currOptions.Tense.ToString();
-                    model.pronoun = currOptions.Pronoun.ToString();
+                    //model.pronoun = currOptions.Pronoun.ToString();
+                    var pronounDictionary = new Dictionary<Pronoun, string>();
+                    pronounDictionary.Add(Pronoun.FirstPersonSingular, "je");
+                    pronounDictionary.Add(Pronoun.SecondPersonSingular, "tu");
+                    pronounDictionary.Add(Pronoun.ThirdPersonSingular, "il/elle");
+                    pronounDictionary.Add(Pronoun.FirstPersonPlural, "noun");
+                    pronounDictionary.Add(Pronoun.SecondPersonPlural, "vous");
+                    pronounDictionary.Add(Pronoun.ThirdPersonPlural, "ils");
+                    model.pronoun = pronounDictionary[currOptions.Pronoun];
                     model.verb = currVerb.Infinitive;
                     model.conjugation = conjugation;
                 } catch (NotImplementedException ex)

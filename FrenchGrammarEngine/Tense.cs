@@ -8,9 +8,9 @@ namespace FrenchGrammarEngine.Verbs
     {
         Present,
         Imperfect,
-        Past,
+        //Past,
         Future,
-        Conditional,
-        None,
+        //Conditional,
+        //None,
     }
 }
