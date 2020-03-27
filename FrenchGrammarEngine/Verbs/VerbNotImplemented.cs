@@ -11,5 +11,7 @@ namespace FrenchGrammarEngine.Verbs
         public override string Infinitive => throw new NotImplementedException();
 
         public override ConguationDictionary Terminations => throw new NotImplementedException();
+
+        public override string PastParticiple => throw new NotImplementedException();
     }
 }

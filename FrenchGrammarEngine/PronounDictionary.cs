@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using FrenchGrammarEngine.Verbs;
 
@@ -7,6 +9,11 @@ namespace FrenchGrammarEngine
 {
     public class PronounDictionary : Dictionary<Pronoun, string>
     {
+
+        public PronounDictionary(string termination) : this(ArrayList.Repeat(termination, 6).Cast<string>().ToList())
+        {
+
+        }
 
         public PronounDictionary(string fps, string sps, string tps, string fpp, string spp, string tpp) :
                 this(new List<string>()
@@ -34,6 +41,19 @@ namespace FrenchGrammarEngine
                 this.Add(currentPronoun, currentTermination);
 
             }
+        }
+
+        public PronounDictionary Augment(string termination)
+        {
+            string postfix = termination;
+            var result = new PronounDictionary();
+                foreach (var kvp in this)
+            {
+                Pronoun p = kvp.Key;
+                string prefix = kvp.Value;
+                result.Add(p, prefix.Merge(postfix));
+            }
+            return result;
         }
 
         public PronounDictionary Augment(PronounDictionary pronounDictionary)

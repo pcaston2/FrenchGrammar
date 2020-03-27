@@ -8,5 +8,6 @@ namespace FrenchGrammarEngine.Verbs
     {
         public override string Root => "attend";
         public override string Infinitive => "attendre";
+
     }
 }

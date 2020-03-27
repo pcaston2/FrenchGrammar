@@ -2,7 +2,6 @@
 {
     public abstract class IrregularVerb : Verb
     {
-        
-
+            
     }
 }

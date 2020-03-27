@@ -15,17 +15,28 @@ namespace FrenchGrammarEngine.Verbs
         public abstract string Root { get; }
         public abstract string Infinitive { get; }
 
+        public abstract string PastParticiple { get; }
+
+        public virtual Type Auxiliary => typeof(Avoir);
+
+        public Verb GetAuxiliary()
+        {
+            return GenerateVerb(Auxiliary);
+        }
+
         public virtual ConguationDictionary Terminations
         {
             get
             {
                 var td = new ConguationDictionary();
-                td.SetTense(Mood.Indicative, Tense.Imperfect,
-                    GetIndicativeImperfectTense());
                 td.SetTense(Mood.Indicative, Tense.Present,
                     GetIndicativePresentTense());
+                td.SetTense(Mood.Indicative, Tense.Imperfect,
+                    GetIndicativeImperfectTense());
+                td.SetTense(Mood.Indicative, Tense.Past,
+                    GetAuxiliary().GetIndicativePresentTense().Augment("- " + PastParticiple));
                 td.SetTense(Mood.Subjunctive, Tense.Present,
-                    GetSubjunctivePresentTense());
+                    GetSubjunctivePresentTense().Augment(GetSuffix()).Augment(GetStandardTense()));
                 return td;
             }
         }
@@ -33,6 +44,12 @@ namespace FrenchGrammarEngine.Verbs
         public string Termination(Mood mood, Tense tense, Pronoun pronoun)
         {
             return Terminations.GetTense(mood, tense, pronoun);
+        }
+
+
+        public virtual PronounDictionary GetSuffix()
+        {
+            return new PronounDictionary((string)null);
         }
 
         public virtual PronounDictionary GetIndicativeImperfectTense()
@@ -47,7 +64,7 @@ namespace FrenchGrammarEngine.Verbs
                 );
         }
 
-        public virtual PronounDictionary GetIndicativePresentTense()
+        public PronounDictionary GetStandardTense()
         {
             return new PronounDictionary(
 
@@ -58,6 +75,11 @@ namespace FrenchGrammarEngine.Verbs
                 "-ez",
                 "-ent"
                 );
+        }
+
+        public virtual PronounDictionary GetIndicativePresentTense()
+        {
+            return GetStandardTense();
         }
 
         public virtual PronounDictionary GetSubjunctivePresentTense()
@@ -115,10 +137,6 @@ namespace FrenchGrammarEngine.Verbs
         }
 
 
-        protected virtual string ConjugateIndicativePresent(Pronoun pronoun)
-        {
-            throw new NotImplementedException();
-        }
 
     }
 }

@@ -7,7 +7,7 @@ namespace FrenchGrammarEngine.Verbs.RegularVerbs.ErVerbs
     public class Aimer : ErVerb
     { 
         public override string Infinitive => "aimer";
-
+        
         public override string Root => "aim";
     }
 }

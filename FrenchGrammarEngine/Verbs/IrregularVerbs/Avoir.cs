@@ -8,7 +8,9 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
     {
         public override string Root => "av";
         public override string Infinitive => "avoir";
-        
+
+        public override string PastParticiple => "eu";
+
         public override PronounDictionary GetIndicativePresentTense()
         {
             return new PronounDictionary(

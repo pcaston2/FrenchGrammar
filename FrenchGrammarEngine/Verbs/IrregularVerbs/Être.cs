@@ -10,6 +10,7 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
 
         public override string Root => "ét";
 
+        public override string PastParticiple => "été";
 
         public override PronounDictionary GetIndicativePresentTense()
         {
