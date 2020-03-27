@@ -29,9 +29,9 @@ namespace FrenchGrammar.Controllers
                     pronounDictionary.Add(Pronoun.FirstPersonSingular, "je");
                     pronounDictionary.Add(Pronoun.SecondPersonSingular, "tu");
                     pronounDictionary.Add(Pronoun.ThirdPersonSingular, "il/elle");
-                    pronounDictionary.Add(Pronoun.FirstPersonPlural, "noun");
+                    pronounDictionary.Add(Pronoun.FirstPersonPlural, "nous");
                     pronounDictionary.Add(Pronoun.SecondPersonPlural, "vous");
-                    pronounDictionary.Add(Pronoun.ThirdPersonPlural, "ils");
+                    pronounDictionary.Add(Pronoun.ThirdPersonPlural, "ils/elles");
                     model.pronoun = pronounDictionary[currOptions.Pronoun];
                     model.verb = currVerb.Infinitive;
                     model.conjugation = conjugation;

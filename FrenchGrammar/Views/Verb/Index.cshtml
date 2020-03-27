@@ -5,21 +5,15 @@
 }
 <div>
     <dl>
-        <dt>Verb</dt>
-        <dd>@Model.verb</dd>
-        <dt>Mood</dt>
-        <dd>@Model.mood</dd>
-        <dt>Tense</dt>
-        <dd>@Model.tense</dd>
-        <dt>Pronoun</dt>
-        <dd>@Model.pronoun</dd>
+        <dt>Conjugate:</dt>
+        <dd>@Model.pronoun <i>@Model.verb</i> <strong>(@Model.mood @Model.tense)</strong></dd>
     </dl>
     <form role="form" data-toggle="validator">
         <div class="form-group">
-            <label for="inputPassword" class="control-label">Conjugate:</label>
+            <label for="inputPassword" class="control-label">Response:</label>
             <div class="form-inline row">
                 <div class="form-group col-sm-6">
-                    <input type="text" class="form-control" id="inputPassword" data-match="#inputPasswordConfirm" data-match-error="Not quite...">
+                    <input type="text" class="form-control" id="inputPassword" data-match="#inputPasswordConfirm" data-match-error="Not quite..." autocomplete="off">
                     <br />
                     <div class="help-block with-errors"></div>
                 </div>
