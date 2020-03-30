@@ -43,7 +43,7 @@ namespace FrenchGrammarEngine
             }
         }
 
-        public PronounDictionary Augment(string termination)
+        public PronounDictionary Join(string termination)
         {
             string postfix = termination;
             var result = new PronounDictionary();
@@ -56,7 +56,7 @@ namespace FrenchGrammarEngine
             return result;
         }
 
-        public PronounDictionary Augment(PronounDictionary pronounDictionary)
+        public PronounDictionary Join(PronounDictionary pronounDictionary)
         {
             var result = new PronounDictionary();
 

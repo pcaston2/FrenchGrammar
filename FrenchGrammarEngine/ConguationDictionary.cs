@@ -5,7 +5,7 @@ using FrenchGrammarEngine.Verbs;
 
 namespace FrenchGrammarEngine
 {
-    public class ConguationDictionary : Dictionary<KeyValuePair<Mood, Tense>, PronounDictionary>
+    public class ConjugationDictionary : Dictionary<KeyValuePair<Mood, Tense>, PronounDictionary>
     {
         public void SetTense(Mood mood, Tense tense, PronounDictionary pronounDictionary)
         {

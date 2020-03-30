@@ -24,19 +24,19 @@ namespace FrenchGrammarEngine.Verbs
             return GenerateVerb(Auxiliary);
         }
 
-        public virtual ConguationDictionary Terminations
+        public virtual ConjugationDictionary Terminations
         {
             get
             {
-                var td = new ConguationDictionary();
+                var td = new ConjugationDictionary();
                 td.SetTense(Mood.Indicative, Tense.Present,
                     GetIndicativePresentTense());
                 td.SetTense(Mood.Indicative, Tense.Imperfect,
-                    GetIndicativeImperfectTense());
+                    GetSuffix().Join(GetIndicativeImperfectTense()));
                 td.SetTense(Mood.Indicative, Tense.Past,
-                    GetAuxiliary().GetIndicativePresentTense().Augment("- " + PastParticiple));
+                    GetAuxiliary().GetIndicativePresentTense().Join("- " + PastParticiple));
                 td.SetTense(Mood.Subjunctive, Tense.Present,
-                    GetSubjunctivePresentTense().Augment(GetSuffix()).Augment(GetStandardTense()));
+                    GetSuffix().Join(GetSubjunctivePresentTense()).Join(GetStandardTense()));
                 return td;
             }
         }

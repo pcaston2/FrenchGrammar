@@ -37,11 +37,6 @@ namespace FrenchGrammarEngine
 
         public static string Merge(this String prefix, String postfix)
         {
-            if (!postfix.isPostfix())
-            {
-                throw new Exception($"Expected postfix but got {postfix}");
-            }
-
             if (String.IsNullOrEmpty(prefix))
             {
                 return postfix;
