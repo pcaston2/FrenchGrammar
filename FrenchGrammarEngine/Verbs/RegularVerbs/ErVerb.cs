@@ -7,6 +7,8 @@ namespace FrenchGrammarEngine.Verbs
     {
         public override Type Auxiliary => typeof(Avoir);
 
+        public override string Infinitive => Root + "er";
+
         public override string PastParticiple => Root + "é";
     }
 }

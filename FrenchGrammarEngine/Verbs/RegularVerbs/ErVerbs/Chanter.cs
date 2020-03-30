@@ -4,8 +4,8 @@ using System.Text;
 
 namespace FrenchGrammarEngine.Verbs.RegularVerbs.ErVerbs
 {
-    public class Aimer : ErVerb
-    { 
-        public override string Root => "aim";
+    public class Chanter : ErVerb
+    {
+        public override string Root => "chant";
     }
 }

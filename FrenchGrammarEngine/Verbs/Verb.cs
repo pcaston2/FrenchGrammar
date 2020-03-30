@@ -13,7 +13,7 @@ namespace FrenchGrammarEngine.Verbs
     {
 
         public abstract string Root { get; }
-        public abstract string Infinitive { get; }
+        public virtual string Infinitive { get; }
 
         public abstract string PastParticiple { get; }
 
