@@ -42,36 +42,39 @@ namespace FrenchGrammarEngine
 
             }
         }
+        
 
-        public PronounDictionary Join(string termination)
-        {
-            string postfix = termination;
-            var result = new PronounDictionary();
-                foreach (var kvp in this)
-            {
-                Pronoun p = kvp.Key;
-                string prefix = kvp.Value;
-                result.Add(p, prefix.Merge(postfix));
-            }
-            return result;
-        }
-
-        public PronounDictionary Join(PronounDictionary pronounDictionary)
+        public static PronounDictionary operator +(PronounDictionary pd1, PronounDictionary pd2)
         {
             var result = new PronounDictionary();
 
-            foreach (var kvp in this)
+            foreach (var kvp in pd1)
             {
                 Pronoun p = kvp.Key;
                 string prefix = kvp.Value;
                 string postfix = null;
-                if (pronounDictionary.TryGetValue(p, out postfix))
+                if (pd2.TryGetValue(p, out postfix))
                 {
                     result.Add(p, prefix.Merge(postfix));
                 }
             }
 
             return result;
+        }
+
+
+        public static PronounDictionary operator +(PronounDictionary pd, string postfix)
+        {
+            var pd1 = pd;
+            var pd2 = new PronounDictionary(postfix);
+            return pd1 + pd2;
+        }
+
+        public static PronounDictionary operator +(string prefix, PronounDictionary pd)
+        {
+            var pd1 = new PronounDictionary(prefix);
+            var pd2 = pd;
+            return pd1 + pd2;
         }
     }
 }

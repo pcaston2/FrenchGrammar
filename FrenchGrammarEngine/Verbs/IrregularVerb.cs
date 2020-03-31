@@ -2,11 +2,13 @@
 {
     public abstract class IrregularVerb : Verb
     {
-        public override ConjugationDictionary Terminations
+        public override ConjugationDictionary Conjugations
         {
             get
             {
-                var cd = base.Terminations;
+                var cd = base.Conjugations;
+                cd.SetTense(Mood.Indicative, Tense.Present,
+                    GetIndicativePresentTense());
                 cd.SetTense(Mood.Subjunctive, Tense.Present,
                     GetSubjunctivePresentTense());
                 return cd;

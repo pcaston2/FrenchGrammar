@@ -7,6 +7,7 @@ namespace FrenchGrammarEngine.Verbs
     public abstract class ReVerb : Verb
     {
 
+        public override string Ending => "re";
         public override string PastParticiple => Root + 'u';
 
         public override PronounDictionary GetIndicativePresentTense()

@@ -10,7 +10,7 @@ namespace FrenchGrammarEngine.Verbs
 
         public override string Infinitive => throw new NotImplementedException();
 
-        public override ConjugationDictionary Terminations => throw new NotImplementedException();
+        public override ConjugationDictionary Conjugations => throw new NotImplementedException();
 
         public override string PastParticiple => throw new NotImplementedException();
     }

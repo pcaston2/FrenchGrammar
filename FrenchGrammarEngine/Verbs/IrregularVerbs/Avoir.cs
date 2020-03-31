@@ -14,13 +14,13 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
         public override PronounDictionary GetIndicativePresentTense()
         {
             return new PronounDictionary(
-                "ai",
-                "as",
-                "a",
-                "avons",
-                "avez",
-                "ont"
-                );
+                null,
+                null,
+                null,
+                "av-",
+                "av-",
+                null
+                ) + GetIndicativeFutureTense();
         }
 
         public override PronounDictionary GetSubjunctivePresentTense()

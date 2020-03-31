@@ -11,9 +11,16 @@ namespace FrenchGrammarEngine.Verbs
 {
     public abstract class Verb : IVerb
     {
+        //TODO: le indicatif futur
+        //TODO: passé composé
+        //TODO: le indicatif plus-que-parfait
+        //TODO: le conditionnel present
+        //TODO: le subjonctif présent
 
+
+        public virtual string Ending { get; }
         public abstract string Root { get; }
-        public virtual string Infinitive { get; }
+        public virtual string Infinitive => Root + Ending;
 
         public abstract string PastParticiple { get; }
 
@@ -24,26 +31,26 @@ namespace FrenchGrammarEngine.Verbs
             return GenerateVerb(Auxiliary);
         }
 
-        public virtual ConjugationDictionary Terminations
+        public virtual ConjugationDictionary Conjugations
         {
             get
             {
                 var td = new ConjugationDictionary();
                 td.SetTense(Mood.Indicative, Tense.Present,
-                    GetIndicativePresentTense());
+                    Root + GetIndicativePresentTense());
                 td.SetTense(Mood.Indicative, Tense.Imperfect,
-                    GetSuffix().Join(GetIndicativeImperfectTense()));
+                    Root + GetSuffix() + GetIndicativeImperfectTense());
                 td.SetTense(Mood.Indicative, Tense.Past,
-                    GetAuxiliary().GetIndicativePresentTense().Join("- " + PastParticiple));
+                    Root + GetAuxiliary().GetIndicativePresentTense() + " " + PastParticiple);
                 td.SetTense(Mood.Subjunctive, Tense.Present,
-                    GetSuffix().Join(GetSubjunctivePresentTense()).Join(GetStandardTense()));
+                    Root + GetSuffix() + GetSubjunctivePresentTense() + GetStandardTense());
                 return td;
             }
         }
 
-        public string Termination(Mood mood, Tense tense, Pronoun pronoun)
+        public string Conjugation(Mood mood, Tense tense, Pronoun pronoun)
         {
-            return Terminations.GetTense(mood, tense, pronoun);
+            return Conjugations.GetTense(mood, tense, pronoun);
         }
 
 
@@ -93,6 +100,18 @@ namespace FrenchGrammarEngine.Verbs
                 null);
         }
 
+        public virtual PronounDictionary GetIndicativeFutureTense()
+        {
+            return new PronounDictionary(
+                "ai",
+                "as",
+                "a",
+                "ons",
+                "ez",
+                "ont"
+                );
+        }
+
         public static Dictionary<Type, string> Verbs()
         {
             var verbs = new Dictionary<Type, string>();
@@ -125,15 +144,7 @@ namespace FrenchGrammarEngine.Verbs
 
         public virtual string Conjugate(ConjugationOptions conjugation)
         {
-            var termination = Termination(conjugation.Mood, conjugation.Tense, conjugation.Pronoun);
-            if (termination.isPostfix())
-            {
-                return Root.Merge(termination);
-            }
-            else
-            {
-                return termination;
-            }
+            return Conjugation(conjugation.Mood, conjugation.Tense, conjugation.Pronoun);
         }
 
 

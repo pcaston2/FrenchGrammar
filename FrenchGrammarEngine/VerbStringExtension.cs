@@ -21,6 +21,7 @@ namespace FrenchGrammarEngine
         }
 
 
+
         public static bool isPrefix(this String s)
         {
             if (String.IsNullOrEmpty(s))

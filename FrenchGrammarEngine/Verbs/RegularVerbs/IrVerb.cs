@@ -7,6 +7,8 @@ namespace FrenchGrammarEngine.Verbs
     public abstract class IrVerb : Verb
     {
 
+        public override string Ending => "ir";
+
         public override string PastParticiple => Root + 'i';
 
         public override PronounDictionary GetSuffix()

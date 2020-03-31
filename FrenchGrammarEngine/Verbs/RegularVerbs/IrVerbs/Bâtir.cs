@@ -7,8 +7,6 @@ namespace FrenchGrammarEngine.Verbs.RegularVerbs.IrVerbs
     public class Bâtir : IrVerb
     {
 
-        public override string Infinitive => "bâtir";
-
         public override string Root => "bât";
     }
 }
