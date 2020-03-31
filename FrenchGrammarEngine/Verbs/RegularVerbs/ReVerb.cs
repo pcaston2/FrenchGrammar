@@ -22,5 +22,15 @@ namespace FrenchGrammarEngine.Verbs
                         );
         }
 
+        public override ConjugationDictionary Conjugations
+        {
+            get
+            {
+                var td = base.Conjugations;
+                td.SetTense(Mood.Indicative, Tense.Future,
+                    Root + "r" + GetIndicativeFutureTense());
+                return td;
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace FrenchGrammarEngine.Verbs
         Imperfect,
         Past,
         Future,
+        PastPerfect,
         //Conditional,
         //None,
     }

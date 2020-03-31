@@ -34,5 +34,16 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
                 "aient"
                 );
         }
+
+        public override ConjugationDictionary Conjugations
+        {
+            get
+            {
+                var td = base.Conjugations;
+                td.SetTense(Mood.Indicative, Tense.Future,
+                    "aur" + GetIndicativeFutureTense());
+                return td;
+            }
+        }
     }
 }

@@ -11,8 +11,7 @@ namespace FrenchGrammarEngine.Verbs
 {
     public abstract class Verb : IVerb
     {
-        //TODO: le indicatif futur
-        //TODO: passé composé
+
         //TODO: le indicatif plus-que-parfait
         //TODO: le conditionnel present
         //TODO: le subjonctif présent
@@ -42,6 +41,10 @@ namespace FrenchGrammarEngine.Verbs
                     Root + GetSuffix() + GetIndicativeImperfectTense());
                 td.SetTense(Mood.Indicative, Tense.Past,
                     Root + GetAuxiliary().GetIndicativePresentTense() + " " + PastParticiple);
+                td.SetTense(Mood.Indicative, Tense.Future,
+                    Infinitive + GetIndicativeFutureTense());
+                td.SetTense(Mood.Indicative, Tense.PastPerfect,
+                    GetAuxiliary().GetIndicativeImperfectTense() + " " + PastParticiple);
                 td.SetTense(Mood.Subjunctive, Tense.Present,
                     Root + GetSuffix() + GetSubjunctivePresentTense() + GetStandardTense());
                 return td;

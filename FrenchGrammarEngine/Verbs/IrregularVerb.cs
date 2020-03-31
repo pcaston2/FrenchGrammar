@@ -2,6 +2,8 @@
 {
     public abstract class IrregularVerb : Verb
     {
+        public virtual string FutureRoot { get; }
+
         public override ConjugationDictionary Conjugations
         {
             get
