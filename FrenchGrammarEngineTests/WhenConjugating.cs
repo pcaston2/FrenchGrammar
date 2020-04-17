@@ -35,6 +35,7 @@ namespace FrenchGrammarEngineTests {
                 count++;
             }
 
+
             // Assert
             Assert.True(count>0);
         }
@@ -46,7 +47,7 @@ namespace FrenchGrammarEngineTests {
             // Assign
 
             // Act
-            var verbs = Verb.Verbs();
+            var verbs = Verb.AllVerbs();
 
             // Assert
             Assert.NotEmpty(verbs);

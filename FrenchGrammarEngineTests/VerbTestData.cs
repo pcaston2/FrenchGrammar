@@ -34,12 +34,12 @@ namespace FrenchGrammarEngineTests
             {Columns.IndFutFpp, new ConjugationOptions(Mood.Indicative,Tense.Future,Pronoun.FirstPersonPlural) } ,
             {Columns.IndFutSpp, new ConjugationOptions(Mood.Indicative,Tense.Future,Pronoun.SecondPersonPlural) } ,
             {Columns.IndFutTpp, new ConjugationOptions(Mood.Indicative,Tense.Future,Pronoun.ThirdPersonPlural) } ,
-            //{Columns.IndConFps, new ConjugationOptions(Mood.Indicative,Tense.Conditional,Pronoun.FirstPersonSingular) } ,
-            //{Columns.IndConSps, new ConjugationOptions(Mood.Indicative,Tense.Conditional,Pronoun.SecondPersonSingular) } ,
-            //{Columns.IndConTps, new ConjugationOptions(Mood.Indicative,Tense.Conditional,Pronoun.ThirdPersonSingular) } ,
-            //{Columns.IndConFpp, new ConjugationOptions(Mood.Indicative,Tense.Conditional,Pronoun.FirstPersonPlural) } ,
-            //{Columns.IndConSpp, new ConjugationOptions(Mood.Indicative,Tense.Conditional,Pronoun.SecondPersonPlural) } ,
-            //{Columns.IndConTpp, new ConjugationOptions(Mood.Indicative,Tense.Conditional,Pronoun.ThirdPersonPlural) } ,
+            {Columns.IndConFps, new ConjugationOptions(Mood.Conditional,Tense.Present,Pronoun.FirstPersonSingular) } ,
+            {Columns.IndConSps, new ConjugationOptions(Mood.Conditional,Tense.Present,Pronoun.SecondPersonSingular) } ,
+            {Columns.IndConTps, new ConjugationOptions(Mood.Conditional,Tense.Present,Pronoun.ThirdPersonSingular) } ,
+            {Columns.IndConFpp, new ConjugationOptions(Mood.Conditional,Tense.Present,Pronoun.FirstPersonPlural) } ,
+            {Columns.IndConSpp, new ConjugationOptions(Mood.Conditional,Tense.Present,Pronoun.SecondPersonPlural) } ,
+            {Columns.IndConTpp, new ConjugationOptions(Mood.Conditional,Tense.Present,Pronoun.ThirdPersonPlural) } ,
             {Columns.SubPresFps, new ConjugationOptions(Mood.Subjunctive,Tense.Present,Pronoun.FirstPersonSingular) } ,
             {Columns.SubPresSps, new ConjugationOptions(Mood.Subjunctive,Tense.Present,Pronoun.SecondPersonSingular) } ,
             {Columns.SubPresTps, new ConjugationOptions(Mood.Subjunctive,Tense.Present,Pronoun.ThirdPersonSingular) } ,
@@ -52,12 +52,12 @@ namespace FrenchGrammarEngineTests
             //{Columns.SubImpFpp, new ConjugationOptions(Mood.Subjunctive,Tense.Imperfect,Pronoun.FirstPersonPlural) } ,
             //{Columns.SubImpSpp, new ConjugationOptions(Mood.Subjunctive,Tense.Imperfect,Pronoun.SecondPersonPlural) } ,
             //{Columns.SubImpTpp, new ConjugationOptions(Mood.Subjunctive,Tense.Imperfect,Pronoun.ThirdPersonPlural) } ,
-            //{Columns.ImpFps, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.FirstPersonSingular) } ,
-            //{Columns.ImpSps, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.SecondPersonSingular) } ,
-            //{Columns.ImpTps, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.ThirdPersonSingular) } ,
-            //{Columns.ImpFpp, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.FirstPersonPlural) } ,
-            //{Columns.ImpSpp, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.SecondPersonPlural) } ,
-            //{Columns.ImpTpp, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.ThirdPersonPlural) }
+            {Columns.ImpFps, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.FirstPersonSingular) } ,
+            {Columns.ImpSps, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.SecondPersonSingular) } ,
+            {Columns.ImpTps, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.ThirdPersonSingular) } ,
+            {Columns.ImpFpp, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.FirstPersonPlural) } ,
+            {Columns.ImpSpp, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.SecondPersonPlural) } ,
+            {Columns.ImpTpp, new ConjugationOptions(Mood.Imperative,Tense.None,Pronoun.ThirdPersonPlural) }
         };
         enum Columns
         {
@@ -141,7 +141,7 @@ namespace FrenchGrammarEngineTests
 
                 var columns = line.Split(',');
                 var verb = columns[(int) Columns.Infinitive];
-                var type = Verb.Verbs().Where(t => t.Value == verb).Select(t => t.Key).FirstOrDefault();
+                var type = Verb.AllVerbs().Where(t => t.Value == verb).Select(t => t.Key).FirstOrDefault();
 
                 if (type != null)
                 {
@@ -149,9 +149,12 @@ namespace FrenchGrammarEngineTests
                     {
                         ConjugationOptions options;
                         Columns col = (Columns) i;
-                        if (columnMap.TryGetValue(col, out options))
-                        {
-                            yield return new object[] {type, options, columns[i]};
+                        var expectedConjugation = columns[i];
+                        if (!String.IsNullOrEmpty(expectedConjugation)) {
+                            if (columnMap.TryGetValue(col, out options))
+                            {
+                                yield return new object[] { type, options, expectedConjugation };
+                            }
                         }
                     }
                 }

@@ -15,6 +15,25 @@ namespace FrenchGrammarEngine
 
         }
 
+
+        public PronounDictionary(string termination, List<Pronoun> pronouns)
+        {
+            foreach (var pronoun in pronouns)
+            {
+                this.Add(pronoun, termination);
+            }
+        }
+
+        public static List<Pronoun> ImperativePronouns()
+        {
+            return new List<Pronoun>()
+            {
+                Pronoun.SecondPersonSingular,
+                Pronoun.FirstPersonPlural,
+                Pronoun.SecondPersonPlural
+            };
+        }
+
         public PronounDictionary(string fps, string sps, string tps, string fpp, string spp, string tpp) :
                 this(new List<string>()
                 {
@@ -23,6 +42,42 @@ namespace FrenchGrammarEngine
             )
         {
 
+        }
+
+        public PronounDictionary ToImperative()
+        {
+            var imperativePronouns = ImperativePronouns();
+            var result = new PronounDictionary(this);
+            foreach(var pronoun in this.Keys.ToList())
+            {
+                if (!imperativePronouns.Contains(pronoun))
+                {
+                    result.Remove(pronoun);
+                }
+            }
+            return result;
+        }
+
+        public PronounDictionary Remove(List<Pronoun> pronouns)
+        {
+            var result = new PronounDictionary(this);
+            foreach (var pronoun in ImperativePronouns())
+            {
+                result.Remove(pronoun);
+            }
+            return result;
+        }
+
+        public PronounDictionary Move(Pronoun from, Pronoun to)
+        {
+            var result = new PronounDictionary(this);
+            result[to] = this[from];
+            return result;
+        }
+
+        public PronounDictionary MoveFirstToSecondSingular()
+        {
+            return Move(Pronoun.FirstPersonSingular, Pronoun.SecondPersonSingular);
         }
 
         public PronounDictionary() : base()
@@ -42,7 +97,11 @@ namespace FrenchGrammarEngine
 
             }
         }
-        
+
+        public PronounDictionary(PronounDictionary dictionary) : base(dictionary)
+        {
+
+        }
 
         public static PronounDictionary operator +(PronounDictionary pd1, PronounDictionary pd2)
         {

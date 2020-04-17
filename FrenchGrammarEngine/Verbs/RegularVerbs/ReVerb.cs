@@ -8,7 +8,8 @@ namespace FrenchGrammarEngine.Verbs
     {
 
         public override string Ending => "re";
-        public override string PastParticiple => Root + 'u';
+        public override string PastParticiple => Root + "u";
+        public string AlternateInfinitive => Root + "r-";
 
         public override PronounDictionary GetIndicativePresentTense()
         {
@@ -28,7 +29,9 @@ namespace FrenchGrammarEngine.Verbs
             {
                 var td = base.Conjugations;
                 td.SetTense(Mood.Indicative, Tense.Future,
-                    Root + "r" + GetIndicativeFutureTense());
+                    AlternateInfinitive + GetIndicativeFutureTense());
+                td.SetTense(Mood.Conditional, Tense.Present,
+                    AlternateInfinitive + GetIndicativeImperfectTense());
                 return td;
             }
         }

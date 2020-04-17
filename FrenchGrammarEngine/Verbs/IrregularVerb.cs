@@ -13,6 +13,10 @@
                     GetIndicativePresentTense());
                 cd.SetTense(Mood.Subjunctive, Tense.Present,
                     GetSubjunctivePresentTense());
+                cd.SetTense(Mood.Conditional, Tense.Present,
+                    ConditionalRoot + GetIndicativeImperfectTense());
+                cd.SetTense(Mood.Imperative, Tense.None,
+                    GetSubjunctivePresentTense().MoveFirstToSecondSingular().ToImperative());
                 return cd;
             }
         }

@@ -11,7 +11,6 @@ namespace FrenchGrammarEngine.Verbs
         Past,
         Future,
         PastPerfect,
-        //Conditional,
-        //None,
+        None,
     }
 }

@@ -13,33 +13,23 @@ namespace FrenchGrammar.Controllers
     {
         public IActionResult Index()
         {
-            VerbViewModel model = null;
-            do
-            {
-                try
-                {
-                    var currVerb = RandomVerbSelector.GetRandomVerb();
-                    var currOptions = RandomVerbSelector.GetRandomConjugationOption();
-                    var conjugation = currVerb.Conjugate(currOptions);
-                    model = new VerbViewModel();
-                    model.mood = currOptions.Mood.ToString();
-                    model.tense = currOptions.Tense.ToString();
-                    //model.pronoun = currOptions.Pronoun.ToString();
-                    var pronounDictionary = new Dictionary<Pronoun, string>();
-                    pronounDictionary.Add(Pronoun.FirstPersonSingular, "je");
-                    pronounDictionary.Add(Pronoun.SecondPersonSingular, "tu");
-                    pronounDictionary.Add(Pronoun.ThirdPersonSingular, "il/elle");
-                    pronounDictionary.Add(Pronoun.FirstPersonPlural, "nous");
-                    pronounDictionary.Add(Pronoun.SecondPersonPlural, "vous");
-                    pronounDictionary.Add(Pronoun.ThirdPersonPlural, "ils/elles");
-                    model.pronoun = pronounDictionary[currOptions.Pronoun];
-                    model.verb = currVerb.Infinitive;
-                    model.conjugation = conjugation;
-                } catch (NotImplementedException ex)
-                {
-
-                }
-            } while (model == null);
+            var currVerb = RandomVerbSelector.GetRandomVerb();
+            var currOptions = RandomVerbSelector.GetRandomConjugationOption();
+            var conjugation = currVerb.Conjugate(currOptions);
+            VerbViewModel model = new VerbViewModel();
+            model.mood = currOptions.Mood.ToString();
+            model.tense = currOptions.Tense.ToString();
+            //model.pronoun = currOptions.Pronoun.ToString();
+            var pronounDictionary = new Dictionary<Pronoun, string>();
+            pronounDictionary.Add(Pronoun.FirstPersonSingular, "je");
+            pronounDictionary.Add(Pronoun.SecondPersonSingular, "tu");
+            pronounDictionary.Add(Pronoun.ThirdPersonSingular, "il/elle");
+            pronounDictionary.Add(Pronoun.FirstPersonPlural, "nous");
+            pronounDictionary.Add(Pronoun.SecondPersonPlural, "vous");
+            pronounDictionary.Add(Pronoun.ThirdPersonPlural, "ils/elles");
+            model.pronoun = pronounDictionary[currOptions.Pronoun];
+            model.verb = currVerb.Infinitive;
+            model.conjugation = conjugation;
             return View(model);
         }
     }

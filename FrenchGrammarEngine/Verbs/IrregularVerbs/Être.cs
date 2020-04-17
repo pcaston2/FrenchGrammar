@@ -12,6 +12,7 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
 
         public override string PastParticiple => "été";
 
+        public override string ConditionalRoot => "ser-";
         public override PronounDictionary GetIndicativePresentTense()
         {
             return new PronounDictionary(

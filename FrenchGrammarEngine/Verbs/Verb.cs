@@ -11,19 +11,49 @@ namespace FrenchGrammarEngine.Verbs
 {
     public abstract class Verb : IVerb
     {
-
-        //TODO: le indicatif plus-que-parfait
-        //TODO: le conditionnel present
-        //TODO: le subjonctif présent
-
-
         public virtual string Ending { get; }
         public abstract string Root { get; }
+        public virtual string ConditionalRoot { get; }
         public virtual string Infinitive => Root + Ending;
-
         public abstract string PastParticiple { get; }
-
         public virtual Type Auxiliary => typeof(Avoir);
+
+        
+        public static Dictionary<Type, string> AllVerbs()
+        {
+            var verbs = new Dictionary<Type, string>();
+
+            var verbTypes = new List<Type>
+            {
+                typeof(Porter),
+                typeof(Finir),
+                typeof(Aimer),
+                typeof(Bâtir),
+                typeof(Être),
+                typeof(Avoir),
+                typeof(Attendre),
+                typeof(Défendre)
+            };
+
+            foreach (var verb in verbTypes)
+            {
+                var verbInstance = GenerateVerb(verb);
+                verbs.Add(verb, verbInstance.Infinitive);
+            }
+
+            return verbs;
+        }
+
+        public static List<Tuple<Mood, Tense>> AllConjugations() {
+            var result = new List<Tuple<Mood, Tense>>();
+            result.Add(new Tuple<Mood, Tense>(Mood.Indicative, Tense.Present));
+            result.Add(new Tuple<Mood, Tense>(Mood.Indicative, Tense.Imperfect));
+            result.Add(new Tuple<Mood, Tense>(Mood.Indicative, Tense.Future));
+            result.Add(new Tuple<Mood, Tense>(Mood.Conditional, Tense.Present));
+            result.Add(new Tuple<Mood, Tense>(Mood.Subjunctive, Tense.Present));
+            result.Add(new Tuple<Mood, Tense>(Mood.Imperative, Tense.None));
+            return result;
+        }
 
         public Verb GetAuxiliary()
         {
@@ -47,8 +77,24 @@ namespace FrenchGrammarEngine.Verbs
                     GetAuxiliary().GetIndicativeImperfectTense() + " " + PastParticiple);
                 td.SetTense(Mood.Subjunctive, Tense.Present,
                     Root + GetSuffix() + GetSubjunctivePresentTense() + GetStandardTense());
+                td.SetTense(Mood.Conditional, Tense.Present,
+                    Infinitive + GetIndicativeImperfectTense());
+                td.SetTense(Mood.Imperative, Tense.None,
+                    Root + GetIndicativePresentTense().MoveFirstToSecondSingular().ToImperative());
                 return td;
             }
+        }
+
+        public virtual PronounDictionary GetImperativeTense()
+        {
+            return new PronounDictionary(
+                    null,
+                    "-e",
+                    null,
+                    "-ons",
+                    "-ez",
+                    null
+                );
         }
 
         public string Conjugation(Mood mood, Tense tense, Pronoun pronoun)
@@ -115,30 +161,6 @@ namespace FrenchGrammarEngine.Verbs
                 );
         }
 
-        public static Dictionary<Type, string> Verbs()
-        {
-            var verbs = new Dictionary<Type, string>();
-
-            var verbTypes = new List<Type>
-            {
-                typeof(Porter),
-                typeof(Finir),
-                typeof(Aimer),
-                typeof(Bâtir),
-                typeof(Être),
-                typeof(Avoir),
-                typeof(Attendre),
-                typeof(Défendre)
-            };
-
-            foreach (var verb in verbTypes)
-            {
-                var verbInstance = GenerateVerb(verb);
-                verbs.Add(verb, verbInstance.Infinitive);
-            }
-
-            return verbs;
-        }
 
         public static Verb GenerateVerb(Type type)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,6 +12,8 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
 
         public override string PastParticiple => "eu";
 
+        public override string ConditionalRoot => "aur-";
+
         public override PronounDictionary GetIndicativePresentTense()
         {
             return new PronounDictionary(
@@ -21,6 +24,17 @@ namespace FrenchGrammarEngine.Verbs.IrregularVerbs
                 "av-",
                 null
                 ) + GetIndicativeFutureTense();
+        }
+
+        public override PronounDictionary GetImperativeTense()
+        {
+            return new PronounDictionary(
+                null,
+                "aie",
+                null,
+                "ayons",
+                "ayez",
+                null);
         }
 
         public override PronounDictionary GetSubjunctivePresentTense()
